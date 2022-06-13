@@ -37,66 +37,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             DesignComposeTheme {
                 navController = rememberNavController()
-                ConfiguracionArbolNavegacion(navController = navController)
+                ConfiguracionArbolNavegacion(
+                    navController = navController
+                )
             }
         }
     }
 }
 
-@Composable
-fun MyApp(volcanes: List<Volcan> = Volcanes.listaDeVolcanes){
-    LazyColumn{
-        items(items = volcanes){ volcan ->
-            VolcanesCard(volcan = volcan)
-        }
-    }
-}
-
-@Composable
-fun VolcanesCard(volcan: Volcan){
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-            .clip(RoundedCornerShape(4.dp))
-            .background(MaterialTheme.colors.surface)
-            .clickable(onClick = { /*navegara a la siguiente */ })
-            .padding(16.dp)
-    ){
-      Surface(
-          modifier = Modifier.size(50.dp),
-          shape = CircleShape,
-          color = MaterialTheme.colors.onSurface.copy(alpha = 0.25f)
-      ){
-          Image(
-              painter = rememberImagePainter(
-                  data = volcan.imagenUrl
-              ),
-              contentDescription = "Imagen Volcan",
-              contentScale = ContentScale.FillBounds
-          )
-      }
-      Column(
-          modifier = Modifier
-              .padding(horizontal = 8.dp)
-              .align(Alignment.CenterVertically)
-      ) {
-          Text(
-              volcan.nombre,
-              fontWeight = FontWeight.Bold)
-          Text(
-              "${volcan.altura} metros",
-              style = MaterialTheme.typography.body2
-          )
-      }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    DesignComposeTheme {
-        //Greeting("Android")
-        MyApp()
-    }
-}

@@ -18,12 +18,12 @@ fun ConfiguracionArbolNavegacion(
         composable(
             route = Pantalla.Principal.ruta
         ){
-            Principal()
+            Principal(navController = navController)
         }
         composable(
             route = Pantalla.Detalle.ruta
         ){
-            Detalle()
+            Detalle(navController = navController)
         }
     }
 }
